@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="User login for FairChance Club subscriber dashboard."
+    />
+    <title>FairChance Club | User Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="index.html">
+          <span class="brand-mark">FC</span>
+          <span class="brand-text">
+            <strong>FairChance Club</strong>
+            <small>User login</small>
+          </span>
+        </a>
+
+        <nav class="site-nav">
+          <a href="index.html">Home</a>
+          <a href="admin-login.html">Admin login</a>
+        </nav>
+
+        <a class="button button-sm" href="index.html">Back to site</a>
+      </header>
+
+      <main class="auth-page">
+        <section class="auth-card reveal">
+          <div>
+            <p class="eyebrow">Protected subscriber access</p>
+            <h1>Sign in to open your dashboard.</h1>
+            <p class="hero-text">
+              This is a demo member login flow for the assignment. Use the sample
+              subscriber email and password below to access the protected user dashboard.
+            </p>
+          </div>
+
+          <form id="user-login-form" class="auth-form">
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" placeholder="member@fairchance.club" required />
+            </label>
+            <label>
+              <span>Password</span>
+              <input type="password" name="password" placeholder="Member@2026" required />
+            </label>
+            <button class="button" type="submit">Login to user dashboard</button>
+            <p class="auth-error" id="user-login-error" aria-live="polite"></p>
+          </form>
+
+          <div class="credential-grid">
+            <article>
+              <span>Login URL</span>
+              <strong>fairchance-club-assignment.vercel.app/user-login.html</strong>
+            </article>
+            <article>
+              <span>Email</span>
+              <strong>member@fairchance.club</strong>
+            </article>
+            <article>
+              <span>Password</span>
+              <strong>Member@2026</strong>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -59,6 +59,9 @@ billingButtons.forEach((button) => {
 const ADMIN_EMAIL = "admin@fairchance.club";
 const ADMIN_PASSWORD = "FairChance@2026";
 const ADMIN_SESSION_KEY = "fairchanceAdminAuth";
+const USER_EMAIL = "member@fairchance.club";
+const USER_PASSWORD = "Member@2026";
+const USER_SESSION_KEY = "fairchanceUserAuth";
 const currentPage = window.location.pathname.split("/").pop() || "index.html";
 
 if (currentPage === "admin.html" && localStorage.getItem(ADMIN_SESSION_KEY) !== "true") {
@@ -69,8 +72,18 @@ if (currentPage === "admin-login.html" && localStorage.getItem(ADMIN_SESSION_KEY
   window.location.replace("admin.html");
 }
 
+if (currentPage === "dashboard.html" && localStorage.getItem(USER_SESSION_KEY) !== "true") {
+  window.location.replace("user-login.html");
+}
+
+if (currentPage === "user-login.html" && localStorage.getItem(USER_SESSION_KEY) === "true") {
+  window.location.replace("dashboard.html");
+}
+
 const adminLoginForm = document.querySelector("#admin-login-form");
 const adminLoginError = document.querySelector("#admin-login-error");
+const userLoginForm = document.querySelector("#user-login-form");
+const userLoginError = document.querySelector("#user-login-error");
 
 if (adminLoginForm) {
   adminLoginForm.addEventListener("submit", (event) => {
@@ -92,11 +105,39 @@ if (adminLoginForm) {
   });
 }
 
+if (userLoginForm) {
+  userLoginForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(userLoginForm);
+    const email = String(formData.get("email") || "").trim().toLowerCase();
+    const password = String(formData.get("password") || "").trim();
+
+    if (email === USER_EMAIL && password === USER_PASSWORD) {
+      localStorage.setItem(USER_SESSION_KEY, "true");
+      window.location.href = "dashboard.html";
+      return;
+    }
+
+    if (userLoginError) {
+      userLoginError.textContent = "Incorrect email or password. Please use the demo member credentials.";
+    }
+  });
+}
+
 const adminLogoutButton = document.querySelector("#admin-logout");
+const userLogoutButton = document.querySelector("#user-logout");
 
 if (adminLogoutButton) {
   adminLogoutButton.addEventListener("click", () => {
     localStorage.removeItem(ADMIN_SESSION_KEY);
     window.location.href = "admin-login.html";
+  });
+}
+
+if (userLogoutButton) {
+  userLogoutButton.addEventListener("click", () => {
+    localStorage.removeItem(USER_SESSION_KEY);
+    window.location.href = "user-login.html";
   });
 }
