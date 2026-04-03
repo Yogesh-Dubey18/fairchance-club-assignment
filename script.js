@@ -55,3 +55,48 @@ billingButtons.forEach((button) => {
     });
   });
 });
+
+const ADMIN_EMAIL = "admin@fairchance.club";
+const ADMIN_PASSWORD = "FairChance@2026";
+const ADMIN_SESSION_KEY = "fairchanceAdminAuth";
+const currentPage = window.location.pathname.split("/").pop() || "index.html";
+
+if (currentPage === "admin.html" && localStorage.getItem(ADMIN_SESSION_KEY) !== "true") {
+  window.location.replace("admin-login.html");
+}
+
+if (currentPage === "admin-login.html" && localStorage.getItem(ADMIN_SESSION_KEY) === "true") {
+  window.location.replace("admin.html");
+}
+
+const adminLoginForm = document.querySelector("#admin-login-form");
+const adminLoginError = document.querySelector("#admin-login-error");
+
+if (adminLoginForm) {
+  adminLoginForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(adminLoginForm);
+    const email = String(formData.get("email") || "").trim().toLowerCase();
+    const password = String(formData.get("password") || "").trim();
+
+    if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+      localStorage.setItem(ADMIN_SESSION_KEY, "true");
+      window.location.href = "admin.html";
+      return;
+    }
+
+    if (adminLoginError) {
+      adminLoginError.textContent = "Incorrect email or password. Please use the demo admin credentials.";
+    }
+  });
+}
+
+const adminLogoutButton = document.querySelector("#admin-logout");
+
+if (adminLogoutButton) {
+  adminLogoutButton.addEventListener("click", () => {
+    localStorage.removeItem(ADMIN_SESSION_KEY);
+    window.location.href = "admin-login.html";
+  });
+}
