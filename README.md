@@ -1,35 +1,46 @@
-# FairChance Club Assignment Page
+# NoteSpark
 
-Static responsive landing page based on the golf charity subscription PRD.
+Advanced mini notes application built for the assignment using `Next.js`, `MongoDB`, and `Mongoose`.
 
-## Files
+## Features
 
-- `index.html` - page structure and content
-- `styles.css` - visual design, layout, and responsive rules
-- `script.js` - reveal animations and draw-mode button interaction
+- Create notes with title and description
+- Read all notes with created date
+- Update existing notes
+- Delete notes with immediate UI refresh
+- Search notes by title
+- Loading states for fetch, create, update, and delete flows
+- Responsive polished UI
 
-## Local preview
+## Tech Stack
 
-From this folder, run:
+- Next.js App Router
+- MongoDB Atlas or any MongoDB deployment
+- Mongoose
+- Zod validation
 
-```powershell
-python -m http.server 4173
-```
+## Local Setup
 
-Then open:
-
-`http://127.0.0.1:4173`
-
-## Deploy
-
-This is a plain static site, so it can be deployed directly to:
-
-- Vercel
-- Netlify
-- GitHub Pages
-
-For Vercel, import the folder as a static project or run:
+1. Install dependencies:
 
 ```powershell
-npx vercel
+npm install
 ```
+
+2. Create `.env.local`:
+
+```env
+MONGODB_URI=your-mongodb-connection-string
+```
+
+3. Start the app:
+
+```powershell
+npm run dev
+```
+
+4. Open [http://localhost:3000](http://localhost:3000)
+
+## Deployment
+
+Deploy on Vercel and add the same `MONGODB_URI` environment variable in project settings before production use.
